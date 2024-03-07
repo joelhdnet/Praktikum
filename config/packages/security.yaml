@@ -8,7 +8,7 @@ security:
         backend_users:
             memory:
                 users:
-                    praktikant: { password: '$2y$13$/x6I3lCUdJ5eurOgI.3r2O6qkNZEORDz74M9V4eIhorMKcEbAH0gm', roles: [ 'ROLE_ADMIN' ] }
+                    joel: { password: '$2y$13$iyJjxS/juUMkN0fSN.mFhuPCSU/jm9be1CU8O5YVm.t.TQpvTKUsy', roles: [ 'ROLE_ADMIN' ] }
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/

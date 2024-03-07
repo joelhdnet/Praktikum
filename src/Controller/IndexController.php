@@ -14,6 +14,7 @@ use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\Messenger\SendEmailMessage;
 use Symfony\Component\Routing\Annotation\Route;
 
 class IndexController extends AbstractController
@@ -65,6 +66,7 @@ class IndexController extends AbstractController
         /*
          * Erstelle eine Variable mit der Bezeichnung 'showDownloadButton' und weise ihr den Wert false zu
          */
+        $showDownloadButton = false;
 
         // create new empty contact object
         /*
@@ -73,6 +75,7 @@ class IndexController extends AbstractController
          *
          * Erstelle eine neue Variabel die 'contact' heißt und weise ihr ein neu erstelltes Contact Objekt zu.
          */
+        $contact = new Contact();
 
         // create new Form for ContactType (the ContactType defines the form fields)
         /*
@@ -83,7 +86,8 @@ class IndexController extends AbstractController
          * Erstelle eine Variable mit dem namen 'form'. Erstelle mit der oben genannten Funktion ein neues Formular und
          * weise es der Variable zu.
          */
-
+        $form = $this->createForm(ContactType::class, $contact);
+        
         // load form input from request if they are available
         $form->handleRequest($request);
         // check if form is submitted and if all values are syntactically correct
@@ -102,7 +106,18 @@ class IndexController extends AbstractController
                  *  - 'from' --> Die Email des Ausfüllers des Kontaktformulares
                  *  - 'message' --> Die Nachricht
                  *
-                 */
+                 */ 
+                $this->emailService->sendMail(
+                    $contact->getEmail(),
+                    $this->reciverEmailAddress,
+                    $contact->getSubject(),
+                    "emails/contact.html.twig",
+                    [
+                        "message" => $contact->getMessage(),
+                        "from" => $contact->getEmail(),
+                        "name" => $contact->getName()
+                    ]
+                );
 
                 // add flash message to notice the user the success message sending
                 $this->addFlash('contact-success', 'Ihre Nachricht wurde erfolgreich gesendet!');
@@ -139,7 +154,12 @@ class IndexController extends AbstractController
          * Den Rückgabewert der Funktion werden wir dieses mal nicht in eine Variable speichern, sondern werden ihn
          * direkt mit dem Schlüsselwort 'return' zurückgeben.
          *
-         */
+         */return $this->renderForm('landingpage/index.html.twig',
+            [ "form" => $form,
+                "showDownloadButton" => $showDownloadButton,
+                $this->hashService->getHash($request)
+            ]
+         );
     }
 
     /**
