@@ -1,36 +1,50 @@
 {% block style %}
     <style>
         .hobby {
-
+         background:#101034;
+         padding: 80px;
         }
 
         .hobby-element{
+         color:#fff;
+          display: flex;
+            gap: 32px;
 
         }
         .hobby-cards{
-
+         grid-gap: 32px;
+         display: grid;
+         grid-template-columns: repeat(2, 1fr)
         }
 
         .hobby-text {
+          color:#fff;
+          
 
         }
 
+        
+
         @media screen and (max-width: 1020px) {
             .hobby-element {
+                display: flex;
+                flex-direction: column;
+
 
             }
         }
 
         @media screen and (max-width: 650px){
             .hobby {
-
+            min-height: max-content !important;
+            padding: 16px;
             }
             .hobby-cards {
-
+             grid-template-columns: repeat(1, 100px );
             }
 
             .hobby-text {
-
+            padding: 0 16px;
             }
         }
     </style>
@@ -38,19 +52,45 @@
 
 {% block body %}
     {% set hobbies = [
-        {'headline': '',
-        'content': '',
-        'icon': ''},
+        {'headline': 'kickboxen',
+        'content': 'In meiner Freizeit treibe ich sehr viel Sport ich habe mich deswegen auch für Kickboxen in Steinhagen angemeldet. 
+        Ich habe mittlerweile  den Gelben Gürtel.', 
+        'icon': 'svg/boxing.svg'},
+       
+       {'headline': 'schwimmen',
+        'content': 'Ich habe schon immer das Wasser gemocht und habe auch mal Wasserball gemacht. Ich tuh auch gerne Turm/Klippen springen.',
+        'icon':'svg/swimming.svg'},
+        
+        {'headline': 'mode',
+        'content': 'Ich drücke mich gerne mit meinem Kleidungsstyle aus und beschäftige mich mit neuen Trends in der Mode Branche.',
+        'icon': 'svg/clothing.svg'},
 
-    ] %}
+        {'headline':'it',
+        'content':'In der Schule, sowie auch in meiner Freizeit, bereitet mir das Programmieren und entwickeln viel Freude. ',
+        'icon':'svg/code.svg'},
 
+        
+
+   
+   ] %}
+  
     <section id="hobby" class="hobby">
         <div class="hobby-element">
-            <span class="hobby-cards">
+            <div class="hobby-cards">
                 {% for item in hobbies %}
                     {% include 'components/card.html.twig' with item %}
                 {% endfor %}
             </span>
+        </div>
+
+        <div class= "hobby-text">
+           <strong>INTERESSEN</strong> <br> <br>
+           Mein Name ist  Joel Maximilian Böhm. Ich bin 15 Jahre alt und besuche derzeit die Realschule Steinhagen.
+Meine Interessen liegen im Sportlichen und Kreativen Bereich. 
+Ich treibe gerne Kampfsport, achte sehr auf meine Gesundheit.
+In der Schule belege ich die Leistungskurse Englisch, Informatik , 
+Mathematik,Deutsch. Hierbei bringt mir in Informatik das Programmieren viel Freude,
+ daher beschäftige ich mich hiermit auch in meiner Freizeit.
         </div>
     </section>
 {% endblock %}

@@ -9,9 +9,8 @@
             grid-gap: 32px;
             margin-bottom: 32px;
         }
-        .c-ExpertiseItem .c-ExpertiseItem__progressBarContainer .c-ProgressBar__percentage > h3{
-            margin-bottom: 0px;
-            margin-top: -8px;
+        .c-ExpertiseItem .c-ExpertiseItem__progressBarContainer .c-ProgressBar__percentage {
+            color: #fff;
         }
         .c-ExpertiseItem .c-ExpertiseItem__progressBarContainer .c-ProgressBar__bottom {
             width: 100%;
@@ -25,6 +24,10 @@
             transition: width 2s;
             width: 0%;
         }
+        .c-progresbar_headline{
+            color: #fff;
+            
+        }
     </style>
 {% endblock %}
 
@@ -35,7 +38,9 @@
                 <div class="c-ProgressBar__top js-ProgressBarTop" data-percentage="{{ expertise.percentage }}"></div>
             </div>
             <div class="c-ProgressBar__percentage">
+                {{ expertise.percentage }}&nbsp;%
             </div>
+            <div class="c-progresbar_headline">{{ expertise.headline }}</div>
         </div>
     </div>
 {% endblock %}

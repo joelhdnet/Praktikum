@@ -4,11 +4,11 @@
 }
 
 :root {
-    --color-primary-dark: 48,52,43;
-    --color-primary-darker: 31,37,29;
-    --color-primary-normal: 146, 162, 134;
-    --color-primary-light: 185,219,113;
-    --color-primary-lighter: 246,254,241;
+    --color-primary-dark: 30,56,126;
+    --color-primary-darker: 16,16,52;
+    --color-primary-normal: 152, 173, 237;
+    --color-primary-light: 152,173,237;
+    --color-primary-lighter: 255,255,255;
 
     --font-family-base: 'Poppins', sans-serif;
     --font-bold: 700;
@@ -100,7 +100,7 @@ a {
 }
 
 .backend p {
-    color: black;
+    color: white;
 }
 
 .backend .c-linkCopied {

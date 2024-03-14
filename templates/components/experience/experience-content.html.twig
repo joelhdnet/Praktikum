@@ -9,6 +9,9 @@
             display: flex;
             grid-gap: 32px;
         }
+         .experience-title {
+            color:#fff;
+         }
 
         .experience-content-img {
             aspect-ratio: 4/3;
@@ -17,15 +20,11 @@
         .experience-content-text {
             display: flex;
             flex-direction: column;
-        }
+            color:#fff;
 
-        .experiene-content-link{
-            display: flex;
-            height: 100%;
-            align-items: flex-end;
         }
-        .experiene-content-link img {
-            margin-right: 10px;
+        .experience-image {
+            max-width: 45%;
         }
 
         @media screen and (max-width: 650px) {
@@ -41,14 +40,12 @@
 {% endblock %}
 {% block body %}
     <div class="experience-content">
+        <img class="experience-image" src="{{ asset(item.img) }}" />
 
-
-        <span class="experience-content-text">
-            {% if item.link is defined %}
-                <div class="experiene-content-link">
-
-                </div>
-            {% endif %}
-        </span>
+<div>
+        <h3 class="experience-title"> {{item.headline}}</h3>
+        <p class="experience-content-text">
+            {{ item.content }}
+        </p> </div>
     </div>
 {% endblock %}

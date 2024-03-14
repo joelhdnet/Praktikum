@@ -23,8 +23,10 @@
 
 
         .header-holder {
+            padding: 200px 30px;
+            box-sizing: border-box;
             position: fixed;
-            background: rgb(var(--color-primary-dark));
+            background: #4169e1;
             width: 380px;
             height: 100vh;
             z-index: 1;
@@ -97,7 +99,7 @@
             width: 26px;
         }
         #menu-holder {
-            background-color: rgb(var(--color-primary-light));
+            background: #101034;
             width: 380px;
             height: 100%;
             min-height: 100vh;
@@ -131,7 +133,7 @@
 
         @media screen and (max-width: 1599px){
             .header-holder {
-                width: 320px;
+                width: 336px;
             }
 
             #menu-holder {
@@ -139,18 +141,7 @@
                 transform: translateX(-320px);
             }
         }
-        @media screen and (max-width: 1360px){
-            .header-holder {
-                width: 90px;
-            }
-        }
         @media screen and (max-width: 1020px){
-            .header-holder {
-                height: 55px;
-                width: 100%;
-                z-index: 2;
-            }
-
             .toggle-holder {
                 top: 15px;
                 left: 15px;
@@ -163,6 +154,26 @@
                 transform: translateX(-100%);
                 overflow: auto;
             }
+        }
+       
+       
+
+        .list {
+          list-style: none;
+        }
+
+        .list-item {
+          margin-bottom: 20px;
+          color: #fff;
+        }
+
+        .list-item > * {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .text-upper {
+            text-transform: uppercase;
         }
     </style>
 {% endblock %}
@@ -177,26 +188,48 @@
             <nav class="menu-holder--points">
                 <ul>
                     <li class="menu-item">
-                        <a onclick="onNav()" class="nav-points" href="#home">A</a>
+                        <a onclick="onNav()" class="nav-points" href="#home">Home</a>
                     </li>
                     <li class="menu-item">
-                        <a onclick="onNav()" class="nav-points" href="#hobby">B</a>
+                        <a onclick="onNav()" class="nav-points" href="#hobby">Interessen</a>
                     </li>
                     <li class="menu-item">
-                        <a onclick="onNav()" class="nav-points" href="#experience">C</a>
+                        <a onclick="onNav()" class="nav-points" href="#experience">Erfahrungen</a>
                     </li>
                     <li class="menu-item">
-                        <a onclick="onNav()" class="nav-points" href="#career">D</a>
+                        <a onclick="onNav()" class="nav-points" href="#career">Werdegang</a>
                     </li>
                     <li class="menu-item">
-                        <a onclick="onNav()" class="nav-points" href="#expertise">E</a>
+                        <a onclick="onNav()" class="nav-points" href="#expertise">Kenntnisse</a>
                     </li>
                     <li class="menu-item">
-                        <a onclick="onNav()" class="nav-points" href="#contact">F</a>
+                        <a onclick="onNav()" class="nav-points" href="#contact">Kontakt</a>
                     </li>
                 </ul>
             </nav>
         </div>
+
+        <ul class="list">
+            <li class="list-item">
+                <strong class="text-upper">Name</strong>
+                <span>Joel maximilian böhm</span>
+            </li>
+            <li class="list-item">
+                <span class="text-upper">Schule</span>
+                <span>Realschule steinhagen</span>
+            </li>
+        <li class="list-item">
+                <strong class="text-upper">Email</strong>
+                <span>jojoboehm291@gmail.com</span>
+            </li>
+       
+       <li class="list-item">
+                <strong class="text-upper">Telefon</strong>
+                <span>+49 1511 06422902</span>
+            </li>
+
+       </ul>
+
 
         {{ include('components/profile/profile.html.twig') }}
     </header>
