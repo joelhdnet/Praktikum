@@ -12,7 +12,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
-          tools: composer:v2.2.18
+          tools: composer:v2
 
       - uses: actions/checkout@v2
 
@@ -32,7 +32,7 @@ jobs:
 
       - name: Build static html
         run: bin/console app:generate-html
-      
+
       - name: Archive artifact
         run: |
           chmod -c -R +rX "$INPUT_PATH" | while read line; do
@@ -57,7 +57,7 @@ jobs:
           path: ${{ runner.temp }}/artifact.tar
 
   deploy:
-    name: TDB
+    name: deploy
     needs: build
     # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
     permissions:
@@ -72,6 +72,23 @@ jobs:
     # Specify runner + deployment step
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/download-artifact@v3
+        with:
+          name: github-pages
+          path: github-pages-tar
+      - name: Archive artifact
+        run: |
+          mkdir github-pages && \
+          tar \
+            -xvf \
+            github-pages-tar/artifact.tar \
+            -C ./github-pages
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: 'github-pages'
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v2
