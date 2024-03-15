@@ -50,23 +50,12 @@ jobs:
         env:
           INPUT_PATH: public
 
-      - name: Upload artifact
-        uses: actions/upload-artifact@main
-        with:
-          name: github-pages
-          path: ${{ runner.temp }}/artifact.tar
-
-      - uses: actions/download-artifact@v3
-        with:
-          name: github-pages
-          path: github-pages-tar
-
       - name: Archive artifact
         run: |
           mkdir github-pages && \
           tar \
             -xvf \
-            github-pages-tar/artifact.tar \
+            $RUNNER_TEMP/artifact.tar \
             -C ./github-pages
 
       - name: Setup Pages
